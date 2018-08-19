@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
   end
-  
+  mount BlogApi::Base => '/'
   root 'welcome#index'
 end
