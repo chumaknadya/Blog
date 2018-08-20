@@ -46,7 +46,10 @@ module BlogApi
               requires :body, type: String
             end  
             post '/comments' do
-              Article.find(params[:article_id]).comments.create({article_id: params[:article_id], commenter:params[:commenter],body:params[:body]})
+              comment = Article.find(params[:article_id]).comments.create({article_id: params[:article_id], commenter:params[:commenter],body:params[:body]})
+              if comment.errors.any?
+                error!(comment.errors.full_messages.to_sentence, 422)
+              end  
             end
           end  
       end
