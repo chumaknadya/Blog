@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 describe 'BlogApi::V1::Comments' do
-  let(:article) { Article.create({title: 'asdasdasdaas', text: 'asdasdasdasdasd'})}
-  let(:first_comment) { article.comments.create( {commenter: 'Nadine', body: 'asdasdasdasd'})}
-  let(:second_comment) { article.comments.create( {commenter: 'Nadine1', body: 'asdasdasdasd2'})}
+  let(:article) { FactoryBot.create(:article, title: 'asdasdasdaas', text: 'asdasdasdasdasd')}
+  let(:first_comment) { FactoryBot.create(:comment, article_id: article.id, commenter: 'Nadine', body: 'asdasdasdasd')}
+  let(:second_comment) { FactoryBot.create(:comment, article_id: article.id, commenter: 'Nadine1', body: 'asdasdasdasd2')}
 
   describe 'GET /api/v1/articles/:article_id/comments' do
 
